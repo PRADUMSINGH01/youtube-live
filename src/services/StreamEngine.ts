@@ -76,9 +76,8 @@ export class StreamEngine {
             .input(stream)
             .inputFormat('image2pipe')
             .inputFPS(fps)
-            .input('/dev/zero')
-            .inputFormat('s16le')
-            .inputOptions(['-ar 44100', '-ac 2'])
+            .input('silence.mp3') // Safe physical file to prevent SIGSEGV
+            .inputOptions(['-stream_loop -1']) // Loop the silence infinitely
             .videoCodec('libx264')
             .audioCodec('aac')
             .format('flv')
