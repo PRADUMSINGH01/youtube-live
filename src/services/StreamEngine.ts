@@ -75,6 +75,7 @@ export class StreamEngine {
         const ffmpegProcess = ffmpeg()
             .input(stream)
             .inputFormat('image2pipe')
+            .inputOptions(['-vcodec mjpeg']) // Explicitly tell FFmpeg to expect JPEGs to prevent SIGSEGV
             .inputFPS(fps)
             .input('silence.mp3') // Safe physical file to prevent SIGSEGV
             .inputOptions(['-stream_loop -1']) // Loop the silence infinitely
@@ -117,8 +118,7 @@ export class StreamEngine {
 
                 const screenshot = await page.screenshot({ 
                     type: 'jpeg', 
-                    quality: 60,
-                    optimizeForSpeed: true 
+                    quality: 60
                 });
                 
                 if (stream.writable) {
