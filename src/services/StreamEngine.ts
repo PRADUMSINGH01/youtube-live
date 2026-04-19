@@ -45,22 +45,24 @@ export class StreamEngine {
         console.log(`🚀 Starting stream to: ${rtmpUrl} (Match URL: ${url})`);
 
         // 1. Launch Browser with optimized args for Cloud Run
+        console.log("🛠️ Launching Chromium...");
         this.browser = await puppeteer.launch({
-            headless: "new" as any, // Use the new headless mode
+            headless: "new" as any,
             executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || "/usr/bin/chromium", 
             timeout: 60000, 
+            dumpio: true, // This sends browser logs to our console
             args: [
                 `--window-size=${width},${height}`, 
                 "--no-sandbox", 
                 "--disable-setuid-sandbox",
                 "--disable-dev-shm-usage",
                 "--disable-accelerated-2d-canvas",
-                "--disable-gpu", // Required for some cloud environments
+                "--disable-gpu",
                 "--no-first-run",
-                "--no-zygote",
-                "--single-process" // Can help stability in low-resource containers
+                "--no-zygote"
             ]
         });
+        console.log("✅ Browser launched successfully!");
         const page = await this.browser.newPage();
         await page.setViewport({ width, height });
         
