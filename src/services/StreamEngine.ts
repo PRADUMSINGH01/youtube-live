@@ -48,7 +48,7 @@ export class StreamEngine {
         console.log("🛠️ Launching Chromium...");
         this.browser = await puppeteer.launch({
             headless: "new" as any,
-            executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || "/usr/bin/chromium", 
+            executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || "/usr/bin/google-chrome-stable", 
             timeout: 60000, 
             dumpio: true, // This sends browser logs to our console
             args: [
