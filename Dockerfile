@@ -23,8 +23,8 @@ RUN npm install
 # Copy application source
 COPY . .
 
-# Build TypeScript code
-RUN npm run build
+# Build TypeScript code from scratch
+RUN npx tsc --build --clean && npm run build
 
 # Start the worker
 CMD ["node", "dist/worker/worker.js"]
