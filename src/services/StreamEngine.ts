@@ -67,7 +67,8 @@ export class StreamEngine {
         await page.setViewport({ width, height });
         
         console.log(`🌐 Loading page: ${url}`);
-        await page.goto(url, { waitUntil: "networkidle2" });
+        await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 });
+        console.log(`✅ Page loaded! Starting capture loop...`);
 
         // 2. Setup FFmpeg
         const stream = new PassThrough();
