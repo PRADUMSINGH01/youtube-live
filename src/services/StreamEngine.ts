@@ -42,7 +42,7 @@ export class StreamEngine {
         }
 
         const destination = `${rtmpUrl}/${streamKey}`;
-        console.log(`🚀 Starting stream to: ${rtmpUrl} (Match URL: ${url})`);
+        console.log(`🚀 [V2.0] Starting stream to: ${rtmpUrl} (Match URL: ${url})`);
 
         // 1. Launch Browser with optimized args for Cloud Run
         console.log("🛠️ Launching Chromium...");
