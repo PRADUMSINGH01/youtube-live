@@ -1,0 +1,11 @@
+node_modules
+dist
+.env
+.git
+*.mp4
+*.log
+setup-server.sh
+debug-rtmp.ts
+test-libs.ts
+run-test.ts
+src/browser/crome/crome.ts
